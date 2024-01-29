@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>患心脏病概率预测模型</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            text-align: left;
+            max-width: 300px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center; /* 居中显示大字体标题 */
+        }
+
+        label {
+
+            margin-bottom: 5px;
+        }
+         button {
+            display: block;
+            margin: 20px auto; /* 调整按钮的位置 */
+            padding: 10px 20px; /* 调整按钮的大小 */
+            font-size: 16px; /* 设置按钮字体大小 */
+        }
+    </style>
+</head>
+<body>
+    <form action="/predict" method="post">
+         <h2>患心脏病概率预测模型</h2>
+        <label for="age">年龄：</label>
+         <input type="number" id="age" name="age" required min="1" max="130"><br>
+
+        <label for="blood_pressure">静息血压：</label>
+        <input type="text" id="blood_pressure" name="blood_pressure" required><br>
+
+         <label for="cholesterol">血清总胆固醇：</label>
+        <input type="text" id="cholesterol" name="cholesterol" required><br>
+
+         <label for="max_heart_rate">最大心率：</label>
+        <input type="text" id="max_heart_rate" name="max_heart_rate" required><br>
+
+        <label for="st_depression">ST段下降：</label>
+        <input type="text" id="st_depression" name="st_depression" required><br>
+
+        <label for="vessels">主要血管数：</label>
+        <input type="text" id="vessels" name="vessels" required><br>
+
+
+
+        <label>性别：</label>
+        <input type="radio" id="male" name="gender" value="男" required>
+        <label for="male">男</label>
+        <input type="radio" id="female" name="gender" value="女" required>
+        <label for="female">女</label><br>
+
+        <label for="chest_pain">胸痛类型：</label>
+        <select id="chest_pain" name="chest_pain" required>
+            <option value="典型心绞痛">典型心绞痛</option>
+            <option value="非典型心绞痛">非典型心绞痛</option>
+            <option value="无心绞痛">无心绞痛</option>
+            <option value="渐进式疼痛">渐进式疼痛</option>
+        </select><br>
+
+        <label for="blood_sugar">空腹血糖：</label>
+        <select id="blood_sugar" name="blood_sugar" required>
+            <option value="大于120mg/dl">大于120mg/dl</option>
+            <option value="小于120mg/dl">小于120mg/dl</option>
+        </select><br>
+
+        <label for="rest_ecg">静息心电图结果：</label>
+        <select id="rest_ecg" name="rest_ecg" required>
+            <option value="左心室肥大">左心室肥大</option>
+            <option value="患有ST-T波异常">患有ST-T波异常</option>
+            <option value="正常">正常</option>
+        </select><br>
+
+        <label for="exercise_angina">运动诱发的心绞痛：</label>
+        <select id="exercise_angina" name="exercise_angina" required>
+            <option value="是">是</option>
+            <option value="否">否</option>
+        </select><br>
+
+        <label for="exercise_st">运动高峰ST段：</label>
+        <select id="exercise_st" name="exercise_st" required>
+            <option value="下降">下降</option>
+            <option value="平缓">平缓</option>
+            <option value="抬高">抬高</option>
+        </select><br>
+
+        <label for="thalassemia">地中海贫血：</label>
+        <select id="thalassemia" name="thalassemia" required>
+            <option value="可逆缺陷">可逆缺陷</option>
+            <option value="固定缺陷">固定缺陷</option>
+            <option value="正常">正常</option>
+        </select><br>
+
+
+        <button type="submit">预测</button>
+    </form>
+    <script>
+    function validateForm() {
+        var ageInput = document.getElementById("age");
+        var ageWarning = document.getElementById("ageWarning");
+
+        if (parseInt(ageInput.value) > 130) {
+            ageWarning.textContent = "年龄不能超过130岁";
+            return false; // Prevent form submission
+        } else {
+            ageWarning.textContent = "";
+            return true; // Allow form submission
+        }
+    }
+</script>
+</body>
+</html>
